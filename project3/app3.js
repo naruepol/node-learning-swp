@@ -6,9 +6,12 @@ var c2 = require("./call")
 c2.call2();
 c2.call3();
 var baz = require('./baz.js');
-var server = app.createServer(handler);
+
+var server = app.createServer();
 server.listen(8000);
+server.on("request",handler);
 console.log("server start on port 8000");
+
 foo();
 bar(1,2,3,4,5);
 baz.log();
