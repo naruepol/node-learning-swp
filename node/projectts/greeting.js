@@ -1,4 +1,5 @@
 var Greeting = /** @class */ (function () {
+    //Optional parameter
     function Greeting(yourname) {
         this.name = "N/A";
         this.name = yourname;
