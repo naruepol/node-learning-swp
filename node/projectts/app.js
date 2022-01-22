@@ -3,4 +3,4 @@ var greeting : string = `
  Dear User
  ${message}
 `;
-console.log(message);
+console.log(greeting);
