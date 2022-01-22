@@ -34,8 +34,8 @@ export class SubjectService {
     return this.subjectRepo.delete(id);
   }
 
-  filterByCode(code : string){
-    this.subjectRepo.find({ where: { code } });
+  filterByCode(code: string){
+    return this.subjectRepo.find({ where: { code } });
   }
 
   filterPage(skip: number, limit: number){
