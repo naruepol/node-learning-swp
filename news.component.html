@@ -1,0 +1,31 @@
+<app-page [title]="info.title">
+    <div *ngIf="false">
+        <p>{{ info.title }}</p>
+        <a [href]=" info.url">Read More</a>
+
+        <app-news-title message="Message from news page"></app-news-title>
+        <app-news-title [message]="info.title"></app-news-title>
+        <input type="text" [(ngModel)]="info.title" />
+    </div>
+
+    <div fxLayout="column" fxLayoutGap="8px" fxLayoutGap.gt-sm="32px" [ngStyle.gt-sm]="{'padding': '32px'}"
+        [ngStyle]="{'padding': '8px'}">
+        <mat-card *ngFor="let n of allNews">
+            <mat-card-header>
+                <div *ngIf="false" mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>{{ n.title }}</mat-card-title>
+                <mat-card-subtitle>{{ n.subTitle }}</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+                alt="Photo of a Shiba Inu">
+            <mat-card-content>
+                <p>{{n.content}}</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button>LIKE</button>
+                <button mat-button>SHARE</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+
+</app-page>
