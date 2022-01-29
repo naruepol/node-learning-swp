@@ -1,0 +1,48 @@
+<app-page title="ข้อมูลหัวข้อ">
+    <div fxLayout="column" fxLayoutGap="8px" fxLayoutGap.gt-sm="32px" [ngStyle.gt-sm]="{'padding': '32px'}"
+        [ngStyle]="{'padding': '8px'}">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>title</mat-card-title>
+                <mat-card-subtitle>subtitle</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <table mat-table [dataSource]="subject.datas" fxFlex="100%">
+                    <ng-container matColumnDef="ed">
+                        <th mat-header-cell *matHeaderCellDef>แก้ไข</th>
+                        <td mat-cell *matCellDef="let element" style="width: 64px;">
+                            <button mat-icon-button color="primary" (click)="onEditBtnClick(element.id)">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef>#</th>
+                        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="code">
+                        <th mat-header-cell *matHeaderCellDef>Code</th>
+                        <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef>Name</th>
+                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="del">
+                        <th mat-header-cell *matHeaderCellDef>ลบ</th>
+                        <td mat-cell *matCellDef="let element" style="width: 64px;">
+                            <button mat-icon-button color="warn" (click)="onDeleteBtnClick(element.id)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell" [attr.colspan]="displayedColumns.length">ไม่พบข้อมูล</td>
+                    </tr>
+                </table>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</app-page>

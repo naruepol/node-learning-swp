@@ -1,0 +1,34 @@
+<app-page title="ข้อมูลติดต่อสอบถาม">
+    <div fxLayout="column" fxLayoutGap="8px" fxLayoutGap.gt-sm="32px" [ngStyle.gt-sm]="{'padding': '32px'}"
+        [ngStyle]="{'padding': '8px'}">
+        <mat-card *ngFor="let data of contactAdmin.datas">
+            <mat-card-header>
+                <mat-card-title>#{{data.id}} {{data.subject}}</mat-card-title>
+                <mat-card-subtitle>{{data.status}}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-list>
+                    <div mat-subheader>ข้อความจาก {{data.createByIp}} เมื่อ {{data.createDate| date}}</div>
+                    <mat-list-item>
+                        <mat-icon mat-list-icon>message</mat-icon>
+                        <div mat-line>{{data.message}}</div>
+                    </mat-list-item>
+                    <mat-divider></mat-divider>
+                    <div mat-subheader>ความเห็นจาก {{data.updateBy}} เมื่อ {{data.updateDate | date}}</div>
+                    <mat-list-item>
+                        <mat-icon mat-list-icon>comment</mat-icon>
+                        <div mat-line>{{data.comment}}</div>
+                    </mat-list-item>
+                </mat-list>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button color="primary" (click)="onCommentBtnClick(data.id)">
+                    <mat-icon>comment</mat-icon> ใส่ความเห็น
+                </button>
+                <button mat-raised-button color="warn">
+                    <mat-icon>close</mat-icon> ปิดเคส
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</app-page>

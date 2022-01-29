@@ -1,0 +1,43 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.fixed-header {
+  margin-bottom: 5px;
+  top: 0;
+  position: sticky;
+  z-index: 1000;
+  background-color: inherit;
+}
+
+.title {
+  cursor: pointer;
+}
+
+.header-image {
+  background-image: url("https://via.placeholder.com/32x32/e8eaf6/000000");
+  background-size: cover;
+}
+
+.active {
+  background-color: #e8eaf6;
+}
+
+.container {
+  padding: 8px;
+}
+
+mat-sidenav-content {
+  background-color: white;
+}
+
+.logo {
+  border-radius: 50%;
+}
+
+.app-toolbar {
+  position: sticky;
+  position: -webkit-sticky; /* For macOS/iOS Safari */
+  top: 0; /* Sets the sticky toolbar to be on top */
+  z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
+}

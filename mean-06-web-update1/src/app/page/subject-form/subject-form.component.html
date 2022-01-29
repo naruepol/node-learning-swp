@@ -1,0 +1,30 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>title</mat-card-title>
+        <mat-card-subtitle>subtitle</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <form [formGroup]="subjectForm" (submit)="onSubmit()">
+            <div fxLayout="column">
+                <mat-form-field appearance="outline" floatLabel="always">
+                    <mat-label>รหัส</mat-label>
+                    <input matInput placeholder="กรุณาระบุรหัส" formControlName="code">
+                    <mat-icon matSuffix>code</mat-icon>
+                    <mat-error *ngIf="subjectForm.get('code')?.invalid">
+                        กรุณาระบุรหัสให้ถูกต้อง
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" floatLabel="always">
+                    <mat-label>ชื่อ</mat-label>
+                    <input matInput placeholder="กรุณาระบุชื่อ" formControlName="name">
+                    <mat-icon matSuffix>contact_mail</mat-icon>
+                    <mat-error *ngIf="subjectForm.get('name')?.invalid">กรุณาระบุชื่อให้ถูกต้อง</mat-error>
+                </mat-form-field>
+
+                <button mat-raised-button color="primary">
+                    <mat-icon>save</mat-icon> บันทีกข้อมูล
+                </button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

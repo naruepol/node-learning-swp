@@ -1,0 +1,25 @@
+<app-page [title]="info.title_head">
+    <div [ngStyle]="{'padding': '8px'}" [ngStyle.gt-sm]="{'padding': '32px'}">
+        <div fxFlex="100%">
+            <markdown src="assets/markdown/dummy.md"></markdown>
+        </div>
+    </div>
+</app-page>
+<p>news works!</p>
+<p>{{ title }}</p>
+<p>{{ info.title_head }}</p>
+<a [href]="info.url">Read More</a>
+<br>
+<a href="{{ info.url }}">Show More</a>
+
+<app-news-title></app-news-title> 
+
+<app-news-title message="Message form news page"></app-news-title> 
+
+<app-news-title [message]="info.title_head"></app-news-title> 
+
+<input type="text" [(ngModel)]="info.title_head" />
+
+<ul>
+    <li *ngFor="let n of allNews">{{ n.title }}</li>
+</ul>
