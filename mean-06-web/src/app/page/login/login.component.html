@@ -1,0 +1,38 @@
+<app-page title="เข้าสู่ระบบ">
+    <div [ngStyle.gt-sm]="{'padding': '32px'}" [ngStyle]="{'padding': '8px'}">
+        <mat-card fxFlex="100%" fxFlex.gt-sm="600px">
+            <mat-card-header>
+                <mat-card-title>{{ workZone.appName }}</mat-card-title>
+                <mat-card-subtitle>กรุณากรอกข้อมูลอีเมล์และรหัสผ่านเพื่อใช้งานระบบ</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <form [formGroup]="loginForm" (submit)="onLoginSubmit()">
+                    <div fxLayout="column">
+                        <mat-form-field appearance="outline" floatLabel="always">
+                            <mat-label>อีเมล์</mat-label>
+                            <input matInput placeholder="กรุณาระบุอีเมล์" formControlName="username">
+                            <mat-icon matSuffix>mail</mat-icon>
+                            <mat-error *ngIf="loginForm.get('username')?.invalid">กรุณาระบุในรูปแบบ email เช่น
+                                user@org.com
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" floatLabel="always">
+                            <mat-label>รหัสผ่าน</mat-label>
+                            <input type="password" matInput placeholder="กรุณาระบุรหัสผ่าน" formControlName="password">
+                            <mat-icon matSuffix>lock</mat-icon>
+                            <mat-error *ngIf="loginForm.get('password')?.invalid">กรุณาระบุรหัสผ่านของท่านให้ถูกต้อง
+                            </mat-error>
+                        </mat-form-field>
+
+                        <button mat-raised-button color="primary">เข้าสู่ระบบ</button>
+                    </div>
+                </form>
+            </mat-card-content>
+            <mat-card-footer fxLayout="column" fxLayoutAlign="center center">
+                <div class="mat-title">หรือ</div>
+                <button mat-button color="primary" (click)="gotoRegisterPage()" fxFlex>ลงทะเบียนผู้ใช้ใหม่
+                    สำหร้บท่านที่ยังไม่ได้เป็นสมาชิก</button>
+            </mat-card-footer>
+        </mat-card>
+    </div>
+</app-page>

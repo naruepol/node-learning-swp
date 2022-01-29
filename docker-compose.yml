@@ -1,0 +1,54 @@
+version: '3.1'
+services:
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: test_db
+      MYSQL_USER: usr
+      MYSQL_PASSWORD: usr
+    ports:
+      - 3306:3306
+    # volumes:
+    #  - ./mysql/custom.cnf:/etc/mysql/conf.d/custom.cnf
+    command: 'mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci'
+  admin:
+    image: phpmyadmin
+    ports:
+      - 9080:80
+  flyway:
+    image: flyway/flyway
+    volumes:
+      - ./flyway/sql:/flyway/sql
+    command: -url=jdbc:mysql://db -schemas=test_db -user=usr -password=usr -connectRetries=60 migrate
+    depends_on:
+      - db
+  mongodb:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: n12345
+    ports:
+      - 27017:27017
+
+  # wrk:
+  #   image: skandyla/wrk
+  #   volumes:
+  #     - ./wrk:/wrk
+  #   command: wrk -t 4 -c 10k -d 15m -s /wrk/post.lua --timeout 20s http://localhost/p/login
+# load test command
+#
+# wrk -t 4 -c 10k -d 15m -s ./wrk/post.lua --timeout 20s http://localhost/p/login
+#
+# Parameter
+# -t = thread
+# -c = connection
+# -d = test time
+# -s = script
+# --timeout = request timeout
+
+# docker-compose down
+# docker-compose up -d
+# http://localhost

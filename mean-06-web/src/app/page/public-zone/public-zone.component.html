@@ -1,0 +1,72 @@
+<mat-sidenav-container autosize>
+    <mat-sidenav #snav [mode]="mode" [fixedInViewport]="workZone.isDrawerOpen" [opened]="workZone.isDrawerOpen">
+        <mat-toolbar color="primary" class="app-toolbar">
+            <img src="http://via.placeholder.com/64x64.png/3f51b5/FFFFFF/?text=DOCTOR" style="padding-right: 5px;" />
+            <span>{{workZone.comName}}</span>
+        </mat-toolbar>
+        <div class="container">
+
+            <mat-card style="background-color: #f7f7f8;" *ngIf="authService.isAuthen">
+                <mat-card-header>
+                    <div mat-card-avatar class="header-image"></div>
+                    <mat-card-title>{{ authService.userInfo?.name }}</mat-card-title>
+                    <mat-card-subtitle>{{ authService.userInfo?.role === 'A' ? 'Admin': 'User'}}</mat-card-subtitle>
+                </mat-card-header>
+
+                <mat-card-actions>
+                    <button mat-button fxFlex [routerLink]="['', 'profile-setting']">
+                        <mat-icon color="primary">person</mat-icon>
+                        <span>ตั้งค่าโปรไฟล์</span>
+                    </button>
+                    <button mat-button fxFlex [routerLink]="['', 'change-password']">
+                        <mat-icon color="primary">lock</mat-icon>
+                        <span>เปลี่ยนรหัสผ่าน</span>
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+            <div style="padding-top: 8px;" *ngIf="authService.isAuthen else puplicMenu">
+                <mat-accordion>
+                    <mat-expansion-panel *ngFor="let fl of featureList" [expanded]="fl.expanded">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <mat-icon color="primary">{{fl.icon}}</mat-icon>
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                {{fl.name}}
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <mat-action-list>
+                            <mat-list-item *ngFor="let sub of fl.feature" [routerLink]="'/'+sub.url"
+                                [routerLinkActive]="'active'" #rla="routerLinkActive">
+                                <mat-icon mat-list-icon color="primary" class="material-icons-two-tone">
+                                    {{rla.isActive?'task_alt':'radio_button_unchecked'}}</mat-icon>
+                                <div mat-line style="color:grey">{{ sub.name }}</div>
+                            </mat-list-item>
+                        </mat-action-list>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
+            <mat-action-list *ngIf="authService.isAuthen">
+                <button mat-raised-button fxFill color="warn" data-cy="logout-btn" (click)="authService.logout()">
+                    <mat-icon>exit_to_app</mat-icon>
+                    <span>ออกจากระบบ</span>
+                </button>
+            </mat-action-list>
+            <!-- puplic menu -->
+            <ng-template #puplicMenu>
+                <mat-action-list>
+                    <mat-list-item *ngFor="let pub of publicList" [routerLink]="'/'+pub.url"
+                        [routerLinkActive]="'active'" #rla="routerLinkActive">
+                        <mat-icon mat-list-icon color="{{rla.isActive?'primary':'accent'}}">{{pub.icon}}</mat-icon>
+                        <div mat-line>{{ pub.name }}</div>
+                    </mat-list-item>
+                </mat-action-list>
+            </ng-template>
+        </div>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+
+</mat-sidenav-container>

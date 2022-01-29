@@ -1,0 +1,57 @@
+<app-page title="ภาพรวมผลประกอบการ">
+  <div [ngClass.gt-sm]="{'grid-container': true}" [ngClass]="{'grid-container-small': true}">
+    <!-- <h1 class="mat-h1">ภาพรวมผลประกอบการ</h1> -->
+    <mat-grid-list [cols]="( cardLayout | async )?.columns" rowHeight="200px">
+      <!-- Mini Card -->
+      <mat-grid-tile>
+        <app-mini-card icon="receipt" title="ยอดขาย" [value]="9465" color="#ECD5E3" [isIncrease]="true"
+          duration="จากเดือนที่แล้ว" [percentValue]="0.5383" [isCurrency]="true">
+        </app-mini-card>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <app-mini-card icon="paid" title="ยอดเฉลี่ยต่อรายการสั่งซื้อ" [value]="465" color="#F6EAC2" [isIncrease]="false"
+          duration="จากเดือนที่แล้ว" [percentValue]="0.2544" [isCurrency]="true">
+        </app-mini-card>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <app-mini-card icon="shopping_cart" title="รายการสั่งซื้อทั้งหมด" [value]="243" color="#FED7C3"
+          [isIncrease]="true" duration="จากเดือนที่แล้ว" [percentValue]="0.4565" [isCurrency]="false">
+        </app-mini-card>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <app-mini-card icon="account_box" title="จำนวนผู้สมัครใช้งานใหม่" [value]="35" color="#C6DBDA"
+          [isIncrease]="false" duration="จากเดือนที่แล้ว" [percentValue]="0.8361" [isCurrency]="false">
+        </app-mini-card>
+      </mat-grid-tile>
+
+      <!--Charts-->
+      <mat-grid-tile [colspan]="( cardLayout | async )?.chart?.cols" [rowspan]="( cardLayout | async )?.chart?.rows">
+        <app-card title='ยอดขายรายเดือน'>
+          <app-annual-sales-chart></app-annual-sales-chart>
+        </app-card>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="( cardLayout | async )?.chart?.cols" [rowspan]="( cardLayout | async )?.chart?.rows">
+        <app-card title="ยอดขายแบ่งตามกลุ่มสินค้า">
+          <app-product-sales-chart></app-product-sales-chart>
+        </app-card>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="( cardLayout | async )?.chart?.cols" [rowspan]="( cardLayout | async )?.chart?.rows">
+        <app-card title="ยอดขายแบ่งตามช่องทางการขาย">
+          <app-sales-traffic-chart></app-sales-traffic-chart>
+        </app-card>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="( cardLayout | async )?.chart?.cols" [rowspan]="( cardLayout | async )?.chart?.rows">
+        <app-card title="ยอดขายแบ่งตามเพศ">
+          <app-store-sessions-chart></app-store-sessions-chart>
+        </app-card>
+      </mat-grid-tile>
+
+      <!-- table -->
+      <mat-grid-tile [colspan]="( cardLayout | async )?.table?.cols" [rowspan]="( cardLayout | async )?.table?.rows">
+        <app-card title="รายการสั่งซื้อล่าสุด">
+          <app-orders-table></app-orders-table>
+        </app-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</app-page>

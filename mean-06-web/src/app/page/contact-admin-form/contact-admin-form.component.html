@@ -1,0 +1,32 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>ความเห็น</mat-card-title>
+        <mat-card-subtitle>กรุณาระบุความเห็นแล้วกดปุ่มบันทึกข้อมูล</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <form [formGroup]="contactForm" (submit)="onSubmit()">
+            <div fxLayout="column">
+                <mat-form-field appearance="outline" floatLabel="always">
+                    <mat-label>สถานะ</mat-label>
+                    <mat-select formControlName="status">
+                        <mat-option *ngFor="let s of contactService.status" [value]="s.code">
+                            {{s.name}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="contactForm.get('status')?.invalid">
+                        กรุณาระบุสถานะ
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" floatLabel="always">
+                    <mat-label>ความเห็น</mat-label>
+                    <textarea rows="15" matInput placeholder="กรุณาระบุความเห็น" formControlName="comment"></textarea>
+                    <mat-error *ngIf="contactForm.get('comment')?.invalid">กรุณาระบุความเห็น</mat-error>
+                </mat-form-field>
+
+                <button mat-raised-button color="primary">
+                    <mat-icon>save</mat-icon> บันทีกข้อมูล
+                </button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>
