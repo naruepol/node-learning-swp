@@ -1,0 +1,39 @@
+<app-page title="ข้อมูลผู้ใช้งาน">
+
+    <app-form-card title="แบบฟอร์ม{{editMode?'แก้ไข':'เพิ่ม'}}ข้อมูลผู้ใช้งาน" [backUrl]="['', 'user']"
+        subtitle="กรุณากรอกข้อมูลให้ครบถ้วนแล้วกดปุ่มบันทึกข้อมูล">
+        <form [formGroup]="userForm" (submit)="onUserSubmit()">
+            <div fxLayout="column">
+                <mat-form-field appearance="outline" floatLabel="always">
+                    <mat-label>อีเมล์</mat-label>
+                    <input matInput placeholder="กรุณาระบุอีเมล์" formControlName="email">
+                    <mat-icon matSuffix>mail</mat-icon>
+                    <mat-error *ngIf="userForm.get('email')?.invalid">
+                        กรุณาระบุอีเมล์ให้อยู่ในรูปแบบที่ถูกต้อง
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" floatLabel="always">
+                    <mat-label>รหัสพนักงาน</mat-label>
+                    <input matInput placeholder="กรุณาระบุเลขบัตร" formControlName="code">
+                    <mat-icon matSuffix>contact_mail</mat-icon>
+                    <mat-error *ngIf="userForm.get('code')?.invalid">กรุณาระบุเลขบัตร</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" floatLabel="always">
+                    <mat-label>ชื่อ นามสกุล</mat-label>
+                    <input matInput placeholder="กรุณาระบุชื่อ" formControlName="name">
+                    <mat-icon matSuffix>person</mat-icon>
+                    <mat-error *ngIf="userForm.get('name')?.invalid">กรุณาระบุชื่อ นามสกุล</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" floatLabel="always">
+                    <mat-label>รหัสผ่าน</mat-label>
+                    <input matInput placeholder="กรุณาระบุรหัสผ่าน" formControlName="pwd">
+                    <mat-icon matSuffix>lock</mat-icon>
+                    <mat-error *ngIf="userForm.get('pwd')?.invalid">กรุณาระบุรหัสผ่าน</mat-error>
+                </mat-form-field>
+
+                <button mat-raised-button color="primary">บันทีกข้อมูล</button>
+            </div>
+        </form>
+    </app-form-card>
+
+</app-page>

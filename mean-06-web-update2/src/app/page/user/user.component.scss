@@ -1,0 +1,33 @@
+.mat-column-ed {
+  flex: 0 0 10%;
+}
+.mat-column-ed {
+  min-width: 50px;
+  text-align: center;
+}
+.mat-column-code {
+  min-width: 80px;
+  text-align: center;
+}
+.mat-column-name {
+  min-width: 250px;
+}
+.mat-column-email {
+  min-width: 250px;
+}
+.mat-column-role {
+  min-width: 100px;
+  text-align: center;
+}
+.mat-column-del {
+  min-width: 50px;
+  text-align: center;
+}
+.table-container {
+  min-width: 800;
+  max-width: 100%;
+  overflow: auto;
+}
+tr:hover {
+  background: whitesmoke;
+}

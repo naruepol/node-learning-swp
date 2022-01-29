@@ -1,0 +1,37 @@
+.full-width-table {
+  width: 100%;
+}
+
+.small-table {
+  overflow-x: scroll !important;
+}
+
+.mat-column-id {
+  min-width: 30px;
+  text-align: start;
+}
+
+.mat-column-date {
+  min-width: 100px;
+  text-align: start;
+}
+
+.mat-column-name {
+  min-width: 150px;
+  text-align: start;
+}
+
+.mat-column-orderTotal {
+  min-width: 100px;
+  text-align: end;
+  padding-right: 30px;
+}
+
+.mat-column-paymentMode {
+  min-width: 100px;
+  text-align: start;
+}
+.mat-column-status {
+  min-width: 100px;
+  text-align: start;
+}
